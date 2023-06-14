@@ -42,3 +42,5 @@ secrets.yml
 .sts4-cache
 
 gradle
+gradlew
+gradlew.bat
