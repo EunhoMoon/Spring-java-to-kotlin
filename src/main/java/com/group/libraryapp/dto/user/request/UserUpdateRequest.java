@@ -2,7 +2,7 @@ package com.group.libraryapp.dto.user.request;
 
 public class UserUpdateRequest {
 
-    private Long id;
+    private long id;
     private String name;
 
     public long getId() {
@@ -13,7 +13,7 @@ public class UserUpdateRequest {
         return name;
     }
 
-    public UserUpdateRequest(Long id, String name) {
+    public UserUpdateRequest(long id, String name) {
         this.id = id;
         this.name = name;
     }
