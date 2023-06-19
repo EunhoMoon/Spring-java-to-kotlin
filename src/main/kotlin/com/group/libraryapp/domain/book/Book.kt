@@ -1,18 +1,18 @@
 package com.group.libraryapp.domain.book
 
 import com.group.libraryapp.domain.book.BookType.COMPUTER
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
+import javax.persistence.*
+import javax.persistence.EnumType.*
+import javax.persistence.GenerationType.*
 
 @Entity
 class Book(
     val name: String,
 
+    @Enumerated(STRING)
     val type: BookType,
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = IDENTITY)
     val id: Long? = null,
 ) {
     init {
