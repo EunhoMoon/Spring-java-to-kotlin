@@ -31,7 +31,7 @@ class UserServiceTest @Autowired constructor(
   @DisplayName("저장이 정상 동작한다.")
   fun saveUserTest() {
     // given
-    val request = UserCreateRequest("Janek", null);
+    val request = UserCreateRequest("Janek", null)
 
     // when
     userService.saveUser(request)
