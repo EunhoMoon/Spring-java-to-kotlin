@@ -20,6 +20,9 @@ class UserLoanHistory(
     val id: Long? = null
 ) {
 
+    val isReturn: Boolean
+        get() = this.status == RETURNED
+
     fun doReturn() {
         this.status = RETURNED;
     }
