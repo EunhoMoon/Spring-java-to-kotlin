@@ -8,6 +8,7 @@ import com.group.libraryapp.domain.user.UserRepository
 import com.group.libraryapp.domain.user.loanhistory.UserLoanHistory
 import com.group.libraryapp.domain.user.loanhistory.UserLoanHistoryRepository
 import com.group.libraryapp.domain.user.loanhistory.UserLoanStatus
+import com.group.libraryapp.domain.user.loanhistory.UserLoanStatus.*
 import com.group.libraryapp.dto.book.request.BookLoanRequest
 import com.group.libraryapp.dto.book.request.BookRequest
 import com.group.libraryapp.dto.book.request.BookReturnRequest
@@ -65,7 +66,7 @@ class BookServiceTest @Autowired constructor(
         assertThat(results).hasSize(1)
         assertThat(results[0].bookName).isEqualTo("총균쇠")
         assertThat(results[0].user.id).isEqualTo(savedUser.id)
-        assertThat(results[0].status).isEqualTo(UserLoanStatus.LOANED)
+        assertThat(results[0].status).isEqualTo(LOANED)
     }
 
     @Test
@@ -100,6 +101,40 @@ class BookServiceTest @Autowired constructor(
         //then
         val results = userLoanHistoryRepository.findAll()
         assertThat(results).hasSize(1)
-        assertThat(results[0].status).isEqualTo(UserLoanStatus.RETURNED)
+        assertThat(results[0].status).isEqualTo(RETURNED)
     }
+
+    @Test
+    @DisplayName("책 대여 권수를 정상 확인한다.")
+    fun countLoanedBookTest() {
+        // given
+        val savedUser = userRepository.save(User("Janek", null))
+        userLoanHistoryRepository.saveAll(listOf(
+            UserLoanHistory.fixture(savedUser, "A"),
+            UserLoanHistory.fixture(savedUser, "B", RETURNED),
+            UserLoanHistory.fixture(savedUser, "C", RETURNED),
+        ))
+
+        // when
+        val result = bookService.countLoanedBook()
+
+        //then
+        assertThat(result).isEqualTo(1)
+    }
+
+    @Test
+    @DisplayName("분야별 책 권수를 정상 확인한다.")
+    fun getBookStatisticsTest() {
+        // given
+        bookRepository.saveAll(listOf(
+            Book.fixture("A", COMPUTER),
+            Book.fixture("A", COMPUTER),
+            Book.fixture("A", SCIENCE),
+        ))
+
+        // when
+
+        //then
+    }
+
 }
