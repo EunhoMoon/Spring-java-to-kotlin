@@ -43,5 +43,4 @@ class UserService(
   fun getUserLoanHistories(): List<UserLoanHistoryResponse> =
     userRepository.findAllWithHistories().map(UserLoanHistoryResponse::of)
 
-
 }

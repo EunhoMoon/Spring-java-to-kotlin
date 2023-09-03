@@ -4,7 +4,8 @@ import com.group.libraryapp.domain.user.User
 import com.group.libraryapp.domain.user.UserRepository
 import com.group.libraryapp.domain.user.loanhistory.UserLoanHistory
 import com.group.libraryapp.domain.user.loanhistory.UserLoanHistoryRepository
-import com.group.libraryapp.domain.user.loanhistory.UserLoanStatus.*
+import com.group.libraryapp.domain.user.loanhistory.UserLoanStatus.LOANED
+import com.group.libraryapp.domain.user.loanhistory.UserLoanStatus.RETURNED
 import com.group.libraryapp.dto.user.request.UserCreateRequest
 import com.group.libraryapp.dto.user.request.UserUpdateRequest
 import org.assertj.core.api.AssertionsForInterfaceTypes.assertThat
